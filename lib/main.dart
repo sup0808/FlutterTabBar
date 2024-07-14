@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Drawer",
-      home: BottomNavigationScreen(selectedIndex: 0,),
-     
+      home: BottomNavigationScreen(
+        selectedIndex: 0,
+      ),
     );
   }
 }
@@ -29,18 +30,37 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.purpleAccent,
-        title: const Text("Drawer Demo "),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.purpleAccent,
+          title: const Text("Drawer Demo "),
+          bottom: const TabBar(
+              indicatorColor: Colors.black,
+              dividerColor: Colors.blue,
+              dividerHeight: 5,
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.cabin),
+                  text: "Cabin",
+                ),
+                Tab(
+                  icon: Icon(Icons.call),
+                  text: "Call",
+                ),
+                Tab(
+                  icon: Icon(Icons.cake),
+                  text: "Cake",
+                )
+              ]),
+        ),
+        drawer: DrawerDemo(),
+        body: HomeScreen(),
       ),
-      drawer: DrawerDemo(),
-      body: HomeScreen(),
     );
   }
 }
